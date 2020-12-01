@@ -1,0 +1,32 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cargo build",
+            "type": "shell",
+            "command": "cargo build",
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}/fps-lib"
+            }
+        },
+        {
+            "label": "Build and move",
+            "type": "shell",
+            "command": "xcopy \".\\target\\debug\\*.dll\" \"..\\fps\" /K /D /H /Y",
+            "problemMatcher": [],
+            "dependsOn": [
+                "cargo build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/fps-lib"
+            }
+        }
+    ]
+}
